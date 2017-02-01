@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:AnonymiesierungsTool"
         mc:Ignorable="d"
         Title="Anonymisierungs Tool" Height="350" Width="525">
-    <Grid x:Name="grid1">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+    <Grid x:Name="grid1" AllowDrop="True"  DragEnter="TextBlock_DragEnter" DragDrop.Drop="TextBlock_Drop">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.Background>
             <LinearGradientBrush>
                 <GradientStopCollection>
@@ -21,10 +21,28 @@
                 </GradientStopCollection>
             </LinearGradientBrush>
         </Grid.Background>
-        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  HorizontalAlignment="Center" AllowDrop="True">             
-            Drag and Drop the HTML File
-        </TextBlock>
-            
         
+        
+        <!--For the Drop-->
+        
+        <TextBlock  VerticalAlignment="Center"  HorizontalAlignment="Center" TextAlignment="Center" 
+                        Text="Drag and Drop the HTML file" RenderTransformOrigin="0.5,0.5">
+                <!--This Turns the Controll-->
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-33.073"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <!--For the Textbox-->
+        <!--Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="5"-->
+            
+        <!--Border/-->
+
+
+
     </Grid>
 </Window>
