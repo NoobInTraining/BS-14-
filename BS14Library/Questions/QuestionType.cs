@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BS14Library
+namespace BS14Library.Questions
 {
-    public class Class1
+    public enum QuestionType
     {
+        DropDown,
+        MultipleChoice        
     }
 }
