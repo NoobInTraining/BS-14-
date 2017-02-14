@@ -71,7 +71,7 @@ namespace AnonymiesierungsTool
             //If the drop wasn't allowed
             if (!isAllowed)
                 return;
-
+            
             System.Diagnostics.Debugger.Break();
         }
 

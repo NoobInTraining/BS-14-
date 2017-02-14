@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,9 @@ namespace FragenExtractor
     {
         static void Main(string[] args)
         {
+            string path = "";
+            var file = File.ReadAllText(path);
+
         }
     }
 }

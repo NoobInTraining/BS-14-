@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FragenExtractor_WPF", "Frag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UebungsTool", "UebungsTool\UebungsTool.csproj", "{65B66895-0587-457B-82A4-7E2C80DC031F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unittests", "UnitTestProject1\Unittests.csproj", "{D4460BC9-9BA8-4235-8AE1-5596F5CF4FB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{65B66895-0587-457B-82A4-7E2C80DC031F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65B66895-0587-457B-82A4-7E2C80DC031F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65B66895-0587-457B-82A4-7E2C80DC031F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4460BC9-9BA8-4235-8AE1-5596F5CF4FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4460BC9-9BA8-4235-8AE1-5596F5CF4FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4460BC9-9BA8-4235-8AE1-5596F5CF4FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4460BC9-9BA8-4235-8AE1-5596F5CF4FB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
