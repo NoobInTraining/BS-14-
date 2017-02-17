@@ -43,28 +43,46 @@ namespace BS14Library
              </HTML>
              */
 
+            #region [ create the regex ]
             //create the element
             StringBuilder regexBuilder = new StringBuilder("<");
             regexBuilder.Append(html);
             regexBuilder.Append(@"\s?");
-
             //initiate there might be following attributes
-            regexBuilder.Append("(");
-            foreach (var s in completeAttribute)
-            {
-                regexBuilder.Append(s);
-                regexBuilder.Append("|");                
+            if (completeAttribute.Length != 0)
+            {                
+                regexBuilder.Append("(");
+                foreach (var s in completeAttribute)
+                {
+                    regexBuilder.Append("(");
+                    regexBuilder.Append(s);
+                    regexBuilder.Append(" ?)|");                    
+                }
+                //min/only (not sure) amount of those attributes
+                regexBuilder.Append("){");
+                regexBuilder.Append(completeAttribute.Length);
+                regexBuilder.Append("}");
+                regexBuilder.Append(@"\s?");
             }
-            regexBuilder.Append(")");
-            regexBuilder.Append(@"\s?");
-            regexBuilder.Append(">");
+
+            //close it and save the pattern for easy use lateron
+            regexBuilder.Append(">");            
+            var regexPattern = new Regex(regexBuilder.ToString(), RegexOptions.IgnoreCase);
+            #endregion
 
             //Now we have the Regex which we are looking for, so we can go ahead and get that sweet seet first index
-            if (!Regex.IsMatch(html, regexBuilder.ToString()))
+            if (!regexPattern.IsMatch(html))
                 throw new Exception("Does not contain the Element in combination with the attributes");
-            var t = Regex.Split(html, "<" + html + "\\s?", RegexOptions.IgnoreCase);
+            //TODO: Propper exeption
 
-            return null;
+
+
+            //Split the HTML Document apropriatel, the first index is rubish, the 2nd index is the real text generally sping
+            var t = regexPattern.Split(html);
+            string data = t[1]; //TODO trycatch?
+
+
+            return data;
         }
     }
 }
