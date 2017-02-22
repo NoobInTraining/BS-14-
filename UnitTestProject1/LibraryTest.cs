@@ -9,7 +9,8 @@ namespace UnitTestProject1
     [TestClass]
     public class LibraryTest
     {
-        string html = "<CompilactedHTML><div class=\"first\"><div class=\"seconds\"><table><tablebody><div class=\"third\" length=\"3-42\" height=\"3-42\">You should only read this text!</div><div class=\"fourth\" length=\"4\" height=\"4\">This is the second text to read!</div></table>my proterties</table></div></div></CompilactedHTML>";    
+        string html = "<CompilactedHTML><div class=\"first\"><div class=\"seconds\"><table><tablebody><div class=\"third\" length=\"3-42\" height=\"3-42\">"+
+                       "You should only read this text!</div><div class=\"fourth\" length=\"4\" height=\"4\">This is the second text to read!</div></table>my proterties</table></div></div></CompilactedHTML>";    
 
         [TestMethod]
         [TestCategory("HTML Parser")]
@@ -68,9 +69,33 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
+        [TestCategory("HtmlParsingOptions")]
         public void UnsureAttributes()
         {
-            var t = HtmlParsing.GetElementValue(html, )
+            var t = HtmlParsing.GetElementValue(html, "div", HtmlParsingOptions.UnsureAttributeValues, "class", "length", "height");
+            bool b = false, c = false;
+            b = (t[0].Element == "div") && (t[0].Attributes["class"] == "third") && (t[0].Attributes["length"] == "3-42") && (t[0].Attributes["height"] == "3-42");
+            c = (t[1].Element == "div") && (t[1].Attributes["class"] == "fourth") && (t[1].Attributes["length"] == "4") && (t[1].Attributes["height"] == "4");
+            Assert.IsTrue(b && c);
+        }
+
+        [TestMethod]
+        [TestCategory("HtmlParsingOptions")]
+        public void GetAllQuestionsFromFile()
+        {
+            string html = System.IO.File.ReadAllText(@"C:\Users\miles.sasportas\Desktop\testHtmlQuestions.htm");
+            var t = HtmlParsing.GetElementValue(html, "div", HtmlParsingOptions.UnsureAttributeValues, "id", "class");
+            Assert.AreEqual(16, t.Length);
+        }
+
+        [TestMethod]
+        [TestCategory("HtmlParsingOptions")]
+        [Ignore]
+        public void UnsureAttributesWithFileAsHtml()
+        {
+            string html = System.IO.File.ReadAllText(@"C:\Users\miles.sasportas\Desktop\TestHTML.htm");
+            var t = HtmlParsing.GetElementValue(html, "form", HtmlParsingOptions.UnsureAttributeValues, "id", "class", "action", "method", "autocomplete");
+            Assert.IsFalse(false);
         }
     }
 }

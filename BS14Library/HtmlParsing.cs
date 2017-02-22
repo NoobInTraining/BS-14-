@@ -17,7 +17,7 @@ namespace BS14Library
         /// <summary>
         /// This string contains all character on my keyboard. --> does the same thing as . but . is bugged someimtes.
         /// </summary>
-        static private string regexPatternAllCharacters = "\\w\\d\\s.:|<>\\-_,;#'*+~`´?ß\\\\})(/{&%$\"!°^";
+        static private string regexPatternAllCharacters = "\\w\\d\\s.:|<>\\-_,;#'*+~`´?ß\\\\})(/{&%$!°äüö=^";
        
         #endregion
 
@@ -60,7 +60,7 @@ namespace BS14Library
                 foreach (var s in completeAttribute)
                 {
                     regexBuilder.Append("(");
-                    regexBuilder.Append(s);
+                    regexBuilder.Append(Regex.Escape(s));
                     regexBuilder.Append(" *)");
                     regexBuilder.Append("|");
                 }
@@ -83,7 +83,7 @@ namespace BS14Library
                 throw new Exception("Does not contain the Element in combination with the attributes");
                 //TODO: Propper exeption            
                        
-            //we take everything after the opnening tag
+            //we take everything after the opnening tag                 this can be made faster with index takes 60 seconds on ratehr small files
             string evrythingAfter = Regex.Replace(html, ".*" + regexBuilder.ToString(), "", RegexOptions.Singleline);
             //Now we check if the rest has another opening tag
             if (!evrythingAfter.Contains("<" + element))            
@@ -165,7 +165,7 @@ namespace BS14Library
                 foreach (var s in incompleteAttributes)
                 {
                     regexBuilder.Append("(");
-                    regexBuilder.Append(s);
+                    regexBuilder.Append(Regex.Escape(s));
                     regexBuilder.Append("=\"[");
                     regexBuilder.Append(regexPatternAllCharacters);
                     regexBuilder.Append("]+\" *)");
