@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.IO;
+using System;
 using BS14Library;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -77,15 +78,16 @@ namespace UnitTestProject1
             b = (t[0].Element == "div") && (t[0].Attributes["class"] == "third") && (t[0].Attributes["length"] == "3-42") && (t[0].Attributes["height"] == "3-42");
             c = (t[1].Element == "div") && (t[1].Attributes["class"] == "fourth") && (t[1].Attributes["length"] == "4") && (t[1].Attributes["height"] == "4");
             Assert.IsTrue(b && c);
-        }
+        }        
 
         [TestMethod]
         [TestCategory("HtmlParsingOptions")]
+        [Ignore]
         public void GetAllQuestionsFromFile()
         {
-            string html = System.IO.File.ReadAllText(@"C:\Users\miles.sasportas\Desktop\testHtmlQuestions.htm");
-            var t = HtmlParsing.GetElementValue(html, "div", HtmlParsingOptions.UnsureAttributeValues, "id", "class");
-            Assert.AreEqual(16, t.Length);
+            string html = System.IO.File.ReadAllText(@"C:\Users\miles.sasportas\Desktop\BS Html\testHtmlQuestions.htm");
+            var tbone = HtmlParsing.GetElementValue(html, "div", HtmlParsingOptions.UnsureAttributeValues, "id", "class");         
+            Assert.AreEqual(18, tbone.Length);
         }
 
         [TestMethod]

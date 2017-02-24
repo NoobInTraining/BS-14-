@@ -12,6 +12,9 @@ namespace FragenExtractor
     {
         static void Main(string[] args)
         {
+            debug();
+            return;
+
 #if DEBUG
             args = new string[] { @"C:\Users\miles.sasportas\Dropbox\Ausbildungssachen\Moodle Klausuren\OuG 02\OuG 02 erweitert mit Netzplan\KA OuG 02 erweitert mit Netzplan.htm" };
 #endif
@@ -35,6 +38,31 @@ namespace FragenExtractor
             //this step rouhly takes 66 seconds
 
 
+        }
+
+        private static void debug()
+        {
+            var files = System.IO.Directory.GetFiles(@"C:\Users\miles.sasportas\Desktop\BS Html\quesions");
+            var dir = @"C:\Users\miles.sasportas\Desktop\BS Html\quesions\aufgedroselt\";
+            foreach (string file in files)
+            {
+                string html = System.IO.File.ReadAllText(file);
+                string frage, answerBlock, richtigeAntwort;
+                try
+                {
+                    //if it's a normal quesiton 
+                    frage = HtmlParsing.GetElementValue(html, "div", "class=\"qtext\"");
+                    answerBlock = HtmlParsing.GetElementValue(html, "div", "class=\"ablock\"");
+                    richtigeAntwort = HtmlParsing.GetElementValue(html, "div", "class=\"rightanswer\"");
+                }
+                catch (Exception)
+                {
+                    //happens on atleast a dorpdown
+                    frage = "Todo Dropdown"; answerBlock = "TODO Dropdown"; richtigeAntwort = "TODO Dropdown";                    
+                }
+                string f = System.IO.Path.GetFileNameWithoutExtension(file) + ".htm";
+                File.WriteAllText(dir + f, "Fragen:\r\n\r\n" + frage + "\r\nAntworten\r\n\r\n" + answerBlock + "\r\nRichtige Antwort\r\n\r\n" + richtigeAntwort);
+            }            
         }
     }
 }

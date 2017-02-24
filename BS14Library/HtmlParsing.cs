@@ -70,7 +70,7 @@ namespace BS14Library
                 regexBuilder.Append("){");
                 regexBuilder.Append(completeAttribute.Length);
                 regexBuilder.Append("}");
-                regexBuilder.Append(@"\s?");
+                regexBuilder.Append(@"\s*");
             }
 
             //close it and save the pattern for easy use lateron
